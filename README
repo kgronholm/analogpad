@@ -1,0 +1,72 @@
+
+INFORMATION
+===========
+
+This is AnalogPad Qt widget version 0.1
+
+AnalogPad is basically a 5-way navigation widget, with "analog" behavior
+instead of normal digital on/off keys. It is designed to be used with a
+touchscreen, in future hopefully with haptics (for real feedback) and
+multitouch (for multiple pads!). It's suitable at least for games as well
+as other applications where (analog) 5-way navigator works better than
+panning/flicking the screen directly.
+
+The package contains:
+- This document (README)
+- AnalogPad widget sources (analogpad.cpp/h)
+- AnalogPad demo sources (mainwindow.cpp/h/ui, main.cpp)
+- Project files & license info (analogpad.pro/pro.user, LICENSE.GPL3)
+- Prebuild linux binaries for PC (bin/analogpad_linux_pc) and for
+  N810 ARM (bin/analogpad_linux_arm)
+- Some screenshots (screenshots/*)
+
+
+HIGHLIGHTS
+==========
+
+- AnalogPad supports moving the pad with finger/mouse, as well as clicking
+  into directions like traditional 5-way navigation key.
+
+- Uses QPainter for all graphics, no separate pixmap images so
+  scaling nicely for different sized. Also not using SVG, so a bit faster in
+  embedded devices.
+
+- Contains API for theming by changing colors and animation speed.
+
+- Emitting pad position and clicking with Qt signals, which applications
+  can connect to listen.
+
+- To increase performance, widget background is drawn separately into QPixmap
+  and only redrawn when necessary.
+
+
+BUILDING AND RUNNING
+====================
+
+Build the AnalogPad widget and demo with:
+
+> qmake
+> make
+
+Run with:
+
+> ./analogpad
+
+Optionally one can use pre-built linux binary (Built with Ubuntu 8.04 + Qt 4.4.0):
+
+> ./bin/analogpad_linux
+
+Or in N810:
+
+> ./bin/analogpad_arm
+
+
+NOTE: Example uses QWebView browser widget and expects access to internet
+
+
+AUTHORS
+=======
+
+For more information, feature requests etc. please contact:
+- Kaj Grönholm <kaj.gronholm@nomovok.com>
+- Kim Grönholm <kim.gronholm@nomovok.com>
