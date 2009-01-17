@@ -185,7 +185,7 @@ void AnalogPad::paintBackground()
     // Outer circle..
     QRadialGradient radialGrad(QPointF(m_Position.x(), m_Position.y()), this->height()*0.7, QPointF(this->width()*0.1,this->height()*0.1));
     int brightness = 95;
-    if (m_LimitReached) brightness = 107;
+    //    if (m_LimitReached) brightness = 107;
     radialGrad.setColorAt(0, m_BackgroundColor1.lighter(brightness));
     radialGrad.setColorAt(1, m_BackgroundColor2.lighter(brightness));
     painter.setBrush(QBrush(radialGrad));    
@@ -243,6 +243,16 @@ void AnalogPad::paintEvent(QPaintEvent *)
     if (!m_BackgroundPixmap.isNull())
     {
         painter.drawPixmap(QPoint(0,0), m_BackgroundPixmap);
+    }
+
+    // When in outer limits, lighten pad outer circle
+    if (m_LimitReached)
+    {
+        const int lineWidth = this->width()*0.03 + 2;
+        QPen pen = QPen(QColor(255,255,255,50));
+        pen.setWidth(lineWidth);
+        painter.setPen(pen);
+        painter.drawEllipse(m_Position, this->width()*0.45 - lineWidth/2, this->height()*0.45 - lineWidth/2);
     }
 
     // Draw pad arrow effects
@@ -309,13 +319,14 @@ void AnalogPad::mousePressEvent(QMouseEvent *event)
             if(!m_LimitReached) 
             {
                 m_LimitReached = true;
-                paintBackground();
+                //paintBackground();
+
             }	
         } else {
             if(m_LimitReached) 
             {
                 m_LimitReached = false;
-                paintBackground();
+                //paintBackground();
             }
         }
         
@@ -339,7 +350,7 @@ void AnalogPad::mouseReleaseEvent(QMouseEvent *)
     if(m_LimitReached) 
     {
         m_LimitReached = false;
-        paintBackground();
+        //paintBackground();
     }    
     
     if (m_MouseClick)   
@@ -382,13 +393,13 @@ void AnalogPad::mouseMoveEvent(QMouseEvent *event)
             if(!m_LimitReached)
             {
                 m_LimitReached = true;
-                paintBackground();
+                //paintBackground();
             }
         } else {
             if(m_LimitReached)
             {
                 m_LimitReached = false;
-                paintBackground();
+                //paintBackground();
             }
         }
 
