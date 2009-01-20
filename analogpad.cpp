@@ -184,10 +184,9 @@ void AnalogPad::paintBackground()
     // Draw pad
     // Outer circle..
     QRadialGradient radialGrad(QPointF(m_Position.x(), m_Position.y()), this->height()*0.7, QPointF(this->width()*0.1,this->height()*0.1));
-    int brightness = 95;
-    //    if (m_LimitReached) brightness = 107;
-    radialGrad.setColorAt(0, m_BackgroundColor1.lighter(brightness));
-    radialGrad.setColorAt(1, m_BackgroundColor2.lighter(brightness));
+    const int BRIGHTNESS = 95;
+    radialGrad.setColorAt(0, m_BackgroundColor1.lighter(BRIGHTNESS));
+    radialGrad.setColorAt(1, m_BackgroundColor2.lighter(BRIGHTNESS));
     painter.setBrush(QBrush(radialGrad));    
     painter.drawEllipse(m_Position, this->width()*0.45, this->height()*0.45);
     
@@ -251,8 +250,10 @@ void AnalogPad::paintEvent(QPaintEvent *)
         const int lineWidth = this->width()*0.03 + 2;
         QPen pen = QPen(QColor(255,255,255,50));
         pen.setWidth(lineWidth);
+        QPen currentPen = painter.pen();
         painter.setPen(pen);
         painter.drawEllipse(m_Position, this->width()*0.45 - lineWidth/2, this->height()*0.45 - lineWidth/2);
+        painter.setPen(currentPen);
     }
 
     // Draw pad arrow effects
