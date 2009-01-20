@@ -317,18 +317,9 @@ void AnalogPad::mousePressEvent(QMouseEvent *event)
         if(dist>MAX_DIST) 
         {
             dist = MAX_DIST;
-            if(!m_LimitReached) 
-            {
-                m_LimitReached = true;
-                //paintBackground();
-
-            }	
+            m_LimitReached = true;
         } else {
-            if(m_LimitReached) 
-            {
-                m_LimitReached = false;
-                //paintBackground();
-            }
+            m_LimitReached = false;
         }
         
         // Calculate new pad position
@@ -348,11 +339,7 @@ void AnalogPad::mouseReleaseEvent(QMouseEvent *)
     if(!m_MouseDown) return;
 
     m_MouseDown = false;
-    if(m_LimitReached) 
-    {
-        m_LimitReached = false;
-        //paintBackground();
-    }    
+    m_LimitReached = false;
     
     if (m_MouseClick)   
     {
@@ -391,17 +378,9 @@ void AnalogPad::mouseMoveEvent(QMouseEvent *event)
         if(dist>MAX_DIST)
         {
             dist = MAX_DIST;
-            if(!m_LimitReached)
-            {
-                m_LimitReached = true;
-                //paintBackground();
-            }
+            m_LimitReached = true;
         } else {
-            if(m_LimitReached)
-            {
-                m_LimitReached = false;
-                //paintBackground();
-            }
+            m_LimitReached = false;
         }
 
         // Calculate new pad position
